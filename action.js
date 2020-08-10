@@ -15,6 +15,8 @@ module.exports = class {
   }
 
   async execute () {
+    console.log("Raw description")
+    console.log(this.argv.description)
     this.preprocessArgs()
 
     const { argv } = this
@@ -55,6 +57,13 @@ module.exports = class {
     }, {
       key: 'summary',
       value: argv.summary,
+    }, {
+      key: 'fixVersions',
+      value: [{"name": "TBD"}],
+    }, {
+      // Team
+      key: 'customfield_10091',
+      value: ["product"],
     }]
 
     if (argv.description) {
@@ -62,11 +71,6 @@ module.exports = class {
         key: 'description',
         value: argv.description,
       })
-    }
-
-    // TODO fields
-    if (argv.fields) {
-      providedFields = [...providedFields, ...this.transformFields(argv.fields)]
     }
 
     const payload = providedFields.reduce((acc, field) => {
@@ -77,9 +81,10 @@ module.exports = class {
       fields: {},
     })
 
-    const issue = await this.Jira.createIssue(payload)
+    console.log(payload)
+    // const issue = await this.Jira.createIssue(payload)
 
-    return { issue: issue.key }
+    // return { issue: issue.key }
   }
 
   transformFields (fields) {
