@@ -1,12 +1,10 @@
 # Jira Create
-Create new issue
 
-For examples on how to use this, check out the [gajira-demo](https://github.com/atlassian/gajira-demo) repository
-> ##### Only supports Jira Cloud. Does not support Jira Server (hosted)
+Create new issue
 
 ## Usage
 
-> ##### Note: this action requires [Jira Login Action](https://github.com/marketplace/actions/jira-login)
+**Note: this action requires [Jira Login Action](https://github.com/marketplace/actions/jira-login).**
 
 ```yaml
 - name: Create
@@ -25,28 +23,36 @@ For examples on how to use this, check out the [gajira-demo](https://github.com/
 ```
 
 ----
-## Action Spec:
 
-### Environment variables
-- None
+## Action Spec
 
 ### Inputs
-- `project` (required) - Key of the project
-- `issuetype` (required) - Type of the issue to be created. Example: 'Incident'
-- `summary` (required) - Issue summary
+
+All are required.
+
+- `project` - Key of the project
+- `issuetype` - Type of the issue to be created. Example: 'Incident'
+- `summary` - Issue summary
 - `description` - Issue description
+- `issuelink` - Issue URL
+- `fixVersion` - Fix version
+- `team` - Team
 
 ### Outputs
+
 - `issue` - Key of the newly created issue
 
 ### Reads fields from config file at $HOME/jira/config.yml
+
 - `project`
 - `issuetype`
 - `summary`
 - `description`
 
 ### Writes fields to config file at $HOME/jira/config.yml
+
 - `issue` - a key of a newly created issue
 
 ### Writes fields to CLI config file at $HOME/.jira.d/config.yml
+
 - `issue` - a key of a newly created issue

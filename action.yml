@@ -15,7 +15,16 @@ inputs:
     required: true
   description:
     description: Issue description
-    required: false
+    required: true
+  issuelink:
+    description: Issue URL
+    required: true
+  fixversion:
+    description: Fix version
+    required: true
+  team:
+    description: Team
+    required: true
 outputs:
   issue:
     description: Key of the newly created issue

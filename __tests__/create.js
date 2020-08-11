@@ -14,16 +14,15 @@ const issuetypeName = 'TESTISSUETYPE'
 
 const { mocks } = require('./helpers')
 
-test(`Should create simple issue with interpolated event field in summary and description`, async () => {
+test(`Should create simple issue`, async () => {
   const action = new Action({
-    githubEvent: {
-      ref: 'ref/head/blah',
-    },
     argv: {
       project: projectKey,
       issuetype: issuetypeName,
-      summary: 'This is summary {{ event.ref }}',
-      description: 'This is description {{ event.ref }}',
+      summary: 'This is summary {{ github.event.ref }}',
+      description: 'This is description {{ github.event.ref }}',
+      team: "product",
+      fixversion: "TBD",
     },
     config,
   })
@@ -61,8 +60,10 @@ test(`Should create simple issue with interpolated event field in summary and de
       issuetype: {
         name: issuetypeName,
       },
-      summary: 'This is summary ref/head/blah',
-      description: 'This is description ref/head/blah',
+      summary: 'This is summary {{ github.event.ref }}',
+      description: 'This is description {{ github.event.ref }}',
+      customfield_10091: ["product"],
+      fixVersions: [{name: "TBD"}]
     },
   })
 
